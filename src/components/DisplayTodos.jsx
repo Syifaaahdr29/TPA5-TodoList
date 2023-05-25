@@ -4,8 +4,8 @@ import { addTodos } from "../redux/reducers";
 import { removeTodos } from "../redux/reducers";
 import { updateTodos } from "../redux/reducers";
 import { completeTodos } from "../redux/reducers";
-import { useRef } from "react";
 import TodoItem from './TodoItem';
+import { useState } from 'react';
 
 const mapStateToProps = (state) => {
     return {
@@ -23,7 +23,7 @@ const mapStateToProps = (state) => {
   };
 
 const DisplayTodos = (props) => {
-    const [sort, setSort] = useState("active")
+    const [sort, setSort] = useState("active");
     return (
         <div className="displaytodos">
             <div className="buttons">
@@ -32,12 +32,10 @@ const DisplayTodos = (props) => {
                 <button onClick={()=>setSort("all")}>All</button>
             </div>
             <ul>
-                {
-                    props.todos.length > 0 && sort === "active" ?
-
-                    props.todos.map(item => {
+                {props.todos.length > 0 && sort === "active" 
+                    ? props.todos.map((item) => {
                         return (
-                            item.completed === false &&
+                            item.completed === false && (
                             <TodoItem
                                 key={item.id}
                                 item={item}
@@ -46,12 +44,12 @@ const DisplayTodos = (props) => {
                                 completeTodo={props.completeTodo}
                             />
                         )
-                    }) 
-                : null
-                }
+                    );
+                }) 
+                : null}
             </ul>
         </div>
-    )
-}
+    );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(DisplayTodos);

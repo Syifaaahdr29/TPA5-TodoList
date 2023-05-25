@@ -17,18 +17,30 @@ const addTodoReducer = createSlice({
         },
         //Edit Todos
         updateTodos: (state, action) => {
-            return state.map(todo => {
+            return state.map((todo) => {
                 if(todo.id === action.payload.id){
                     return {
                         ...todo,
                         item: action.payload.item, 
-                    }
-                    return todo;
+                    };
                 }
-            })
+                return todo;
+            });
+        },
+        //completed
+        completeTodos: (state, action) => {
+            return state.map((todo) => {
+                if(todo.id === action.payload){
+                    return {
+                        ...todo,
+                        complete: true, 
+                    };
+                }
+                return todo;
+            });
         }
     },
 });
 
-export const {addTodos, removeTodos, updateTodos} = addTodoReducer.actions;
+export const {addTodos, removeTodos, updateTodos, completeTodos} = addTodoReducer.actions;
 export const reducer = addTodoReducer.reducer;

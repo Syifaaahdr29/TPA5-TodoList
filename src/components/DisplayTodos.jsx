@@ -5,7 +5,7 @@ import { removeTodos } from "../redux/reducers";
 import { updateTodos } from "../redux/reducers";
 import { completeTodos } from "../redux/reducers";
 import TodoItem from './TodoItem';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 const mapStateToProps = (state) => {
@@ -28,9 +28,18 @@ const DisplayTodos = (props) => {
     return (
         <div className="displaytodos">
             <div className="buttons">
-                <button onClick={()=>setSort("active")}>Active</button>
-                <button onClick={()=>setSort("completed")}>Completed</button>
-                <button onClick={()=>setSort("all")}>All</button>
+                <motion.button 
+                whileHover={{ scale : 1.1}}
+                whileTap={{scale: 0.9}}
+                onClick={()=>setSort("active")}>Active</motion.button>
+                <motion.button 
+                whileHover={{ scale : 1.1}}
+                whileTap={{scale: 0.9}}
+                onClick={()=>setSort("completed")}>Completed</motion.button>
+                <motion.button 
+                whileHover={{ scale : 1.1}}
+                whileTap={{scale: 0.9}}
+                onClick={()=>setSort("all")}>All</motion.button>
             </div>
             <ul>
                 {props.todos.length > 0 && sort === "active" 

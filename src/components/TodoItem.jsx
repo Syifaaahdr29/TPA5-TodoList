@@ -2,6 +2,7 @@ import React from "react";
 import { useRef } from "react";
 import { AiFillEdit } from "react-icons/ai"
 import { IoCheckmarkDoneSharp, IoClose } from "react-icons/io5"
+import { motion } from "framer-motion";
 
 const TodoItem = (props) => {
   const { item, updateTodo, removeTodo, completeTodo } = props;
@@ -21,7 +22,12 @@ const TodoItem = (props) => {
   };
 
   return (
-      <li key={item.id} className="card">
+      <motion.li 
+      whileHover={{
+        scale: 0.9, transition: {type: "spring", duration:.1}
+      }}
+      
+      key={item.id} className="card">
         <textarea
           ref={inputRef}
           disabled={inputRef.current}
@@ -29,26 +35,32 @@ const TodoItem = (props) => {
           onKeyPress={(e) => update(item.id, inputRef.current.value, e)}
         />
         <div className="btns">
-            <button
+            <motion.button
+            whileTap={{ scale: 0.9}}
+            whileHover={{scale:1.3}}
             style={{color: "green"}}
             onClick={() => changeFocus()}><AiFillEdit/>
-            </button>
+            </motion.button>
 
             {
                 item.completed === false && (
 
-                <button
+                <motion.button
+                whileTap={{ scale: 0.9}}
+                whileHover={{scale:1.3}}
                 style={{color: "red"}}
                 onClick={() => completeTodo(item.id)}><IoCheckmarkDoneSharp/>
-                </button>
+                </motion.button>
             )}
 
-            <button
+            <motion.button
+            whileTap={{ scale: 0.9}}
+            whileHover={{scale:1.3}}
             onClick={() => removeTodo(item.id)}><IoClose/>
-            </button>{" "}
+            </motion.button>{" "}
         </div>
         {item.completed && <span className="completed">Done</span>}
-      </li>
+      </motion.li>
   );
 };
 

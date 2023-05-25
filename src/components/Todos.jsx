@@ -27,13 +27,17 @@ const Todos = (props) => {
   };
 
   const add = () => {
-      props.addTodo({
-      id: Math.floor(Math.random()*1000),
-      item: todo,
-      completed:false,
-    })
-    setTodo("");
-  }
+      if(todo === "") {
+        alert("Input is empty");
+      } else {
+        props.addTodo({
+          id: Math.floor(Math.random()*1000),
+          item: todo,
+          completed:false,
+        });
+        setTodo("");
+      }
+  };
   //console.log("todo text", props);
   return (
     <div className="addTodos">

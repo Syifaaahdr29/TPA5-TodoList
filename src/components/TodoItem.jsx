@@ -30,7 +30,7 @@ const TodoItem = (props) => {
       key={item.id} className="card">
         <textarea
           ref={inputRef}
-          disabled={inputRef.current}
+          disabled={inputRef}
           defaultValue={item.item}
           onKeyPress={(e) => update(item.id, inputRef.current.value, e)}
         />
@@ -39,7 +39,7 @@ const TodoItem = (props) => {
             whileTap={{ scale: 0.9}}
             whileHover={{scale:1.3}}
             style={{color: "green"}}
-            onClick={() => changeFocus()}><AiFillEdit/>
+            onClick={() => changeFocus()}>{""}<AiFillEdit/>{""}
             </motion.button>
 
             {
@@ -56,8 +56,8 @@ const TodoItem = (props) => {
             <motion.button
             whileTap={{ scale: 0.9}}
             whileHover={{scale:1.3}}
-            onClick={() => removeTodo(item.id)}><IoClose/>
-            </motion.button>{" "}
+            onClick={() => removeTodo(item.id)}>{""}<IoClose/>
+            </motion.button>{""}
         </div>
         {item.completed && <span className="completed">Done</span>}
       </motion.li>

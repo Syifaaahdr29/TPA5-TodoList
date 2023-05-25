@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import TodoItem from "../components/TodoItem";
 
 const initialState = [];
 
@@ -34,7 +33,7 @@ const addTodoReducer = createSlice({
                 if(todo.id === action.payload){
                     return {
                         ...todo,
-                        complete: true, 
+                        completed: true, 
                     };
                 }
                 return todo;

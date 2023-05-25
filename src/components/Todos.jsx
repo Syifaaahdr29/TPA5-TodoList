@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addTodos } from "../redux/reducers";
+import { removeTodos } from "../redux/reducers";
 
 const mapStateToProps = (state) => {
   return {
@@ -11,6 +12,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addTodo: (obj) => dispatch(addTodos(obj)),
+    removeTodos: (id) => dispatch(removeTodos(id)),
   };
 };
 
@@ -38,9 +40,12 @@ const Todos = (props) => {
       </br>
       <ul>
         {props.todos.map((item) => {
-            return <li key={item.id}>{item.item}</li>;
-          })
-        }
+            return (
+            <li key={item.id}>
+              {item.item} <button onClick={() => props.removeTodos(item.id)}>Delete</button>{""}
+            </li>
+            );
+          })}
       </ul>
     </div>
   );

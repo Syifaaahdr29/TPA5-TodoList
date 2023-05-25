@@ -1,7 +1,12 @@
 import React from "react";
+import { useRef } from "react";
+import { removeTodos } from "../redux/reducers";
+import { updateTodos } from "../redux/reducers";
+import { completeTodos } from "../redux/reducers";
+import { current } from "@reduxjs/toolkit";
 
 const TodoItem = (props) => {
-  const { item, updateTodo, removeTodos, completeTodo } = props;
+  const { item, updateTodo, removeTodo, completeTodo } = props;
 
   const inputRef = useRef(true);
 
@@ -18,19 +23,20 @@ const TodoItem = (props) => {
   };
 
   return (
-    <div>
-      <li key={item.id}>
+      <li key={item.id} className="card">
         <textarea
           ref={inputRef}
-          disabled={inputRef}
+          disabled={inputRef.current}
           defaultValue={item.item}
           onKeyPress={(e) => update(item.id, inputRef.current.value, e)}
         />
-        <button onClick={() => changeFocus()}>Edit</button>
-        <button onClick={() => props.completeTodo(item.id)}>Complete</button>
-        <button onClick={() => props.removeTodos(item.id)}>Delete</button>{" "}
+        <div className="btns">
+            <button onClick={() => changeFocus()}>Edit</button>
+            <button onClick={() => completeTodo(item.id)}>Complete</button>
+            <button onClick={() => removeTodo(item.id)}>Delete</button>{" "}
+        </div>
+        {item.completed && <span className="completed">Done</span>}
       </li>
-    </div>
   );
 };
 

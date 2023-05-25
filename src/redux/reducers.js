@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import TodoItem from "../components/TodoItem";
 
 const initialState = [];
 
@@ -38,7 +39,7 @@ const addTodoReducer = createSlice({
                 }
                 return todo;
             });
-        }
+        },
     },
 });
 

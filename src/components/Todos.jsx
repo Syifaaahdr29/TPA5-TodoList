@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
     addTodo: (obj) => dispatch(addTodos(obj)),
     removeTodos: (id) => dispatch(removeTodos(id)),
     updateTodos: (obj) => dispatch(updateTodos(obj)),
-    completeTodo: (id) => dispatch(completeTodos(id)),
+    completeTodos: (id) => dispatch(completeTodos(id)),
   };
 };
 

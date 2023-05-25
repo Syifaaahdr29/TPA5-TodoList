@@ -5,6 +5,7 @@ import { removeTodos } from "../redux/reducers";
 import { updateTodos } from "../redux/reducers";
 import { completeTodos } from "../redux/reducers";
 import TodoItem from './TodoItem';
+import { useRef } from 'react';
 import { useState } from 'react';
 
 const mapStateToProps = (state) => {
@@ -44,6 +45,36 @@ const DisplayTodos = (props) => {
                                 completeTodo={props.completeTodo}
                             />
                         )
+                    );
+                }) 
+                : null}
+                {/* Complete Items */}
+                {props.todos.length > 0 && sort === "completed" 
+                    ? props.todos.map((item) => {
+                        return (
+                            item.completed === true && (
+                            <TodoItem
+                                key={item.id}
+                                item={item}
+                                removeTodo={props.removeTodo}
+                                updateTodo={props.updateTodo}
+                                completeTodo={props.completeTodo}
+                            />
+                        )
+                    );
+                }) 
+                : null}
+                {/* All Items */}
+                {props.todos.length > 0 && sort === "all" 
+                    ? props.todos.map((item) => {
+                        return (
+                            <TodoItem
+                                key={item.id}
+                                item={item}
+                                removeTodo={props.removeTodo}
+                                updateTodo={props.updateTodo}
+                                completeTodo={props.completeTodo}
+                            />
                     );
                 }) 
                 : null}

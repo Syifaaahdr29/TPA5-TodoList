@@ -1,9 +1,7 @@
 import React from "react";
 import { useRef } from "react";
-import { removeTodos } from "../redux/reducers";
-import { updateTodos } from "../redux/reducers";
-import { completeTodos } from "../redux/reducers";
-import { current } from "@reduxjs/toolkit";
+import { AiFillEdit } from "react-icons/ai"
+import { IoCheckmarkDoneSharp, IoClose } from "react-icons/io5"
 
 const TodoItem = (props) => {
   const { item, updateTodo, removeTodo, completeTodo } = props;
@@ -31,9 +29,23 @@ const TodoItem = (props) => {
           onKeyPress={(e) => update(item.id, inputRef.current.value, e)}
         />
         <div className="btns">
-            <button onClick={() => changeFocus()}>Edit</button>
-            <button onClick={() => completeTodo(item.id)}>Complete</button>
-            <button onClick={() => removeTodo(item.id)}>Delete</button>{" "}
+            <button
+            style={{color: "green"}}
+            onClick={() => changeFocus()}><AiFillEdit/>
+            </button>
+
+            {
+                item.completed === false && (
+
+                <button
+                style={{color: "red"}}
+                onClick={() => completeTodo(item.id)}><IoCheckmarkDoneSharp/>
+                </button>
+            )}
+
+            <button
+            onClick={() => removeTodo(item.id)}><IoClose/>
+            </button>{" "}
         </div>
         {item.completed && <span className="completed">Done</span>}
       </li>
